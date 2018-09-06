@@ -1,0 +1,15 @@
+<!-- 
+  By ELAM && 2018-8-23
+ -->
+<view class='switchCon' style='border: 1px solid {{ themeColor }};'>
+  <block wx:for='{{ data }}' wx:for-item='item' wx:for-index='indx'>
+    <view 
+      class='switchItem' 
+      style='color:{{ current == indx+1? selectColor : color }};background:{{ current == indx+1? themeColor : "" }}' 
+      bindtap='onTab' data-current='{{indx+1}}'>{{ item }}</view>
+    <view 
+    class='line' 
+    style='background: {{ themeColor }};' 
+    wx:if='{{ indx!=data.length-1 }}'></view>
+  </block>
+</view>

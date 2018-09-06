@@ -1,0 +1,28 @@
+/* component/ESwitchTab.wxss */
+
+.switchCon {
+  display: flex;
+  flex-flow: row wrap;
+  height: 70rpx;
+  overflow: hidden;
+}
+
+.switchCon .switchItem {
+  min-width: 150rpx;
+  max-width: 150rpx;
+  padding-right: 7px;
+  padding-left: 7px;
+  height: 100%;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 70rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.switchCon .line {
+  width: 1px;
+  height: 100%;
+  
+}
+

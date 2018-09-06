@@ -1,0 +1,14 @@
+
+<view class='head'>
+<!-- SwitchTab组件
+      themeColor主题颜色
+      color字体颜色
+      selectColor选中字体颜色
+      bind:currentTab监听
+      data传输数据（最多4个）
+      current默认选中（默认1）
+     -->
+      <ESwitchTab current='1' data='{{ demo }}' bind:currentTab='swtichtab'></ESwitchTab>
+</view>
+
+<view class='result'>{{ result }}</view>
