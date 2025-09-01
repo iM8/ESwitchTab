@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勇者斗恶龙 - 横版冒险</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        #gameContainer {
+            border: 3px solid #8B4513;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background: #000;
+            position: relative;
+        }
+        
+        #gameCanvas {
+            display: block;
+            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 70%, #8B4513 100%);
+        }
+        
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            z-index: 100;
+        }
+        
+        .health-bar, .exp-bar {
+            width: 200px;
+            height: 20px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4444, #ff8888);
+            transition: width 0.3s ease;
+        }
+        
+        .exp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4444ff, #8888ff);
+            transition: width 0.3s ease;
+        }
+        
+        #levelInfo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            text-align: right;
+        }
+        
+        #gameOver, #levelComplete {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            z-index: 200;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+        }
+        
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-size: 12px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
+        
+        <div id="ui">
+            <div>勇者 Lv.<span id="playerLevel">1</span></div>
+            <div class="health-bar">
+                <div class="health-fill" id="healthFill" style="width: 100%;"></div>
+            </div>
+            <div>HP: <span id="currentHp">100</span>/<span id="maxHp">100</span></div>
+            <div class="exp-bar">
+                <div class="exp-fill" id="expFill" style="width: 0%;"></div>
+            </div>
+            <div>EXP: <span id="currentExp">0</span>/<span id="maxExp">100</span></div>
+            <div>金币: <span id="gold">0</span></div>
+        </div>
+        
+        <div id="levelInfo">
+            <div>关卡: <span id="currentLevel">1</span>/10</div>
+            <div>怪物: <span id="monstersLeft">0</span></div>
+        </div>
+        
+        <div id="gameOver">
+            <h2>游戏结束！</h2>
+            <p>勇者倒下了...</p>
+            <button onclick="restartGame()">重新开始</button>
+        </div>
+        
+        <div id="levelComplete">
+            <h2>关卡完成！</h2>
+            <p>恭喜通过本关卡！</p>
+            <button onclick="nextLevel()">下一关</button>
+        </div>
+        
+        <div id="controls">
+            <div>控制: WASD移动 | 空格攻击 | E技能</div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
